@@ -20,7 +20,7 @@
         <?php
         include('configdb.php');
 
-        // Função para deletar uma postagem pelo ID
+
         function deletarPostagem($id) {
             global $mysqli;
 
@@ -34,18 +34,18 @@
             }
         }
 
-        // Verifica se o formulário de deletar foi submetido
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['deletar']) && isset($_POST['postagem_id'])) {
             $postagem_id = $_POST['postagem_id'];
             deletarPostagem($postagem_id);
         }
 
-        // Consulta para obter todas as postagens
+
         $sql = "SELECT * FROM noticias";
         $result = $mysqli->query($sql);
         $posts = [];
 
-        // Verifica se há resultados
+
         if ($result && $result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 $posts[] = $row;
@@ -54,7 +54,7 @@
             echo "<p>Nenhuma postagem encontrada.</p>";
         }
 
-        // Fecha a conexão com o banco de dados
+
         $mysqli->close();
 
         foreach ($posts as $post): ?>
@@ -67,7 +67,7 @@
                     <img src="<?= $post['imagem_link'] ?>" alt="Imagem da Notícia">
                 <?php endif; ?>
 
-                <!-- Adiciona um formulário para deletar a postagem -->
+                <!--deletar a postagem -->
                 <form method="post">
                     <input type='hidden' name='postagem_id' value='<?= $post['id'] ?>'>
                     <input type='submit' name='deletar' value='Deletar'>
