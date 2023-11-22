@@ -1,15 +1,15 @@
 <?php
 include('configdb.php');
 
-// Verifica se o formulário foi submetido
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Obtém os dados do formulário
+
     $titulo = $_POST['titulo'];
     $mensagem = $_POST['mensagem'];
     $imagem_link = $_POST['imagem_link'];
     $autor_nome = $_POST['autor_nome'];
 
-    // Insere os dados no banco de dados
+
     $sql = "INSERT INTO noticias (titulo, mensagem, imagem_link, autor_nome) VALUES ('$titulo', '$mensagem', '$imagem_link', '$autor_nome')";
     
     if ($mysqli->query($sql)) {
